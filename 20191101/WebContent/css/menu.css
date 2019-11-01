@@ -1,6 +1,6 @@
 @charset "UTF-8";
 	
-	ul{width:580px; height:20px; background:pink; list-style:none; padding: 10px; text-align: center;}
+	ul{width:400px; height:20px; background:aqua; list-style:none; padding: 10px; text-align: center;}
 	ul li{float:left; margin-right:10px; display: table; font-family:dotum}
 	ul li a{font-size:12px; color:white; font-weight:bold; text-decoration:none;}
 	
