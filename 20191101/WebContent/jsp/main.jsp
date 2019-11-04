@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div align="center">
-		<c:if test="${id != null }">
+		<c:if test="${id != null }"> 
 		${id}님 환영합니다.<br/>
 			<c:if test="${grant == 'U'}">
 		일반유저 입니다.</c:if>

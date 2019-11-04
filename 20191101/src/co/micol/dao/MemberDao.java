@@ -27,7 +27,7 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 	}
-
+ 
 	public ArrayList<MemberDto> select() { // 여러 사람의 데이터를 확인.
 		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
 

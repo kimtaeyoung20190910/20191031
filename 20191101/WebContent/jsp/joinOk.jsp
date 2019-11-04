@@ -3,7 +3,7 @@
 <%@page import="co.micol.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
 <meta charset="UTF-8">
@@ -14,7 +14,7 @@
 	String id = request.getParameter("id");
 	String name = request.getParameter("name");
 	String pw = request.getParameter("pw");//join의 name속성 값
-	String addr = request.getParameter("addr");
+	String addr = request.getParameter("addr"); 
 
 	MemberDto dto = new MemberDto(id, name, pw, addr);
 	MemberDao dao = new MemberDao();

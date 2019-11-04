@@ -14,7 +14,7 @@
 			String id = request.getParameter("cid");
 			MemberDao dao = new MemberDao();
 			b = dao.isIdCheck(id);
-			if (b) {
+			if (b) { 
 		%>
 		<h2><%=id %>는 사용가능한 id 입니다</h2>
 		<script type="text/javascript">

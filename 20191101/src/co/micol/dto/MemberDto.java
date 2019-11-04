@@ -9,7 +9,7 @@ public class MemberDto {
 	private String grant;
 	private Date enterDate;
 	private String addr;
-
+ 
 	public String getId() {
 		return id;
 	}

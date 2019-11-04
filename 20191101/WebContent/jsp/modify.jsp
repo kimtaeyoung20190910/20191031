@@ -15,7 +15,7 @@
 	MemberDto dto = new MemberDto(); //사용할 인스턴스 생성
 	MemberDao dao = new MemberDao();
 	dto = dao.select(id);
-%>
+%> 
 <div align="center">
 	<div><h2>회원개인정보</h2></div>
 	<div>
