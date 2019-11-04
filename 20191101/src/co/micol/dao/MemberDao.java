@@ -31,6 +31,26 @@ public class MemberDao {
 	public ArrayList<MemberDto> select() { // 여러 사람의 데이터를 확인.
 		ArrayList<MemberDto> list = new ArrayList<MemberDto>();
 
+		MemberDto dto;
+		String sql = "select * from member";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				dto = new MemberDto();
+				dto.setId(rs.getString("memberid"));
+				dto.setName(rs.getString("membername"));
+				dto.setGrant(rs.getString("membergrant"));
+				dto.setEnterDate(rs.getDate("memberenterdate"));
+				dto.setAddr(rs.getString("memberaddr"));
+				
+				list.add(dto); 
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
 		return list;
 	}
 
@@ -41,6 +61,7 @@ public class MemberDao {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
 			rs = psmt.executeQuery();
+
 			if (rs.next()) {
 				dto.setId(rs.getString("memberid"));
 				dto.setName(rs.getString("membername"));
@@ -48,6 +69,7 @@ public class MemberDao {
 				dto.setGrant(rs.getString("membergrant"));
 				dto.setEnterDate(rs.getDate("memberenterdate"));
 				dto.setAddr(rs.getString("memberaddr"));
+				System.out.println("select : " + rs.getString("memberid"));
 			}
 
 		} catch (SQLException e) {
@@ -77,19 +99,63 @@ public class MemberDao {
 		return grant;
 	}
 
-	public int insert(MemberDto dto) {
+	public int insert(MemberDto dto) { // 입력.
 		int n = 0;
+		String sql = "insert into member(memberid,membername,memberpw,memberaddr) values(?,?,?,?)";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getId());
+			psmt.setString(2, dto.getName());
+			psmt.setString(3, dto.getPw());
+			psmt.setString(4, dto.getAddr());
+			n = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
 		return n;
 	}
 
 	public int update(MemberDto dto) {
 		int n = 0;
+		String sql = "update member set membername = ? , memberaddr = ? where memberid =?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getName());
+			psmt.setString(2, dto.getAddr());
+			psmt.setString(3, dto.getId());
+			System.out.println(dto.getId() + dto.getName() + dto.getAddr());
+			n = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
 		return n;
 	}
 
 	public int delete(MemberDto dto) {
 		int n = 0;
 		return n;
+	}
+
+	public boolean isIdCheck(String id) { // 아이디 중복체크 메소드.
+		boolean b = true;
+		String sql = "select memberid from member where memberid = ?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				b = false; // 존재하면 false.
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return b;
 	}
 
 	public void close() {

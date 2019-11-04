@@ -9,7 +9,7 @@ public class MemberDto {
 	private String grant;
 	private Date enterDate;
 	private String addr;
-	
+
 	public String getId() {
 		return id;
 	}
@@ -59,7 +59,19 @@ public class MemberDto {
 	}
 
 	public MemberDto() {
-		
+
+	}
+	public MemberDto(String id, String name, String addr) {
+		this.id = id;
+		this.name = name;
+		this.addr = addr;
+	}
+
+	public MemberDto(String id, String name, String pw, String addr) {
+		this.id = id;
+		this.name = name;
+		this.pw = pw;
+		this.addr = addr;
 	}
 
 }

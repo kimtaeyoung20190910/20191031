@@ -16,7 +16,12 @@
 	MemberDao dao = new MemberDao();
 	grant = dao.isLoginCheck(id, pw);
 	
-	if(grant.equals(null)) {
+	if(grant == null) {%>
+		<script type="text/javascript">
+			alert("로그인 실패, 다시 입력하세요.");
+			document.location="login.jsp";
+		</script>
+	<%
 	} else {
 		session.setAttribute("id", id);
 		session.setAttribute("pw", pw);
